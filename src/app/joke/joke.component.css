@@ -1,0 +1,63 @@
+ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.post{
+    border: 1px solid #edeeee;
+    border-radius: 5px;
+    margin-top: 25px; 
+}
+
+.post-header{
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.post-joke{
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.user{
+    font-size: 20pt;
+    margin-right: 10px;
+}
+
+.post-text{
+    color: rgb(194, 194, 194); 
+}
+
+div.post-footer{
+    margin: auto;
+    text-align: center;
+}
+
+button#like {
+    width: 50%;
+    float: left;
+    display: inline-block;
+    border-bottom-left-radius: 5px;
+}
+
+button#dislike {
+    width: 50%;
+    display: inline-block;
+    border-bottom-right-radius: 5px;
+}
+
+.post-header button{
+    float: right;
+}
+
+button.new-joke{
+    width: 100%;
+    border-radius: 5px;
+}

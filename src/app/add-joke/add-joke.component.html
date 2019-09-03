@@ -1,0 +1,12 @@
+<div class="add-joke">
+    <form method="POST" action="">
+        <label for="joke-input">Joke:</label>
+        <input name="joke" id="joke-input" type="text"><br>
+        <label for="author-selector">Select author:</label>
+        <select name="author">
+            <option value="{{user}}" *ngFor="let user of selectUserOptions">{{user.username}}</option>
+        </select>
+
+        <input type="submit">
+    </form>
+</div>

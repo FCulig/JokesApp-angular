@@ -1,0 +1,17 @@
+h1{
+    color: white;
+    margin: 0;
+}
+
+menu{
+    
+}
+
+input.btn-outline-success:hover {
+    background-color: white;
+}
+
+.top-bar{
+    background-color: #1d1f20;
+    margin: 0;
+}

@@ -1,0 +1,29 @@
+<app-editjoke [jk]="selectedJoke"></app-editjoke>
+<ul>
+    <li *ngFor = "let joke of jokes">
+        <div class="post">
+            <div class="post-header">
+                <a href="#" class="user">{{joke.author.username}}</a><span class="post-text">posted a joke at {{joke.timestamp}}</span>
+                <button (click)="onSelect(joke)">Edit joke</button>
+            </div>
+            <div class="post-joke">
+                <p>{{joke.joke}}<i class="fab fa-accusoft"></i></p>
+            </div>
+            <div class="post-footer">
+                <button class="reacion" id="like">
+                    <span>Like: {{joke.likes}}</span>
+                </button>
+                <button class="reacion" id="dislike">
+                    <span>Dislike: {{joke.dislikes}}</span>
+                </button>
+            </div>
+        </div>
+    </li>
+</ul>
+<button (click)="toggleAddJoke()" class="new-joke">+</button>
+<app-add-joke *ngIf="showAddJoke"></app-add-joke>
+
+<!--
+    na hover vica prikazi ID
+    klik na datum prikaze sve viceve na taj datum, isto za usera
+-->
