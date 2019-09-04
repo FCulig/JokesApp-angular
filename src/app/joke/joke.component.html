@@ -1,26 +1,35 @@
+<app-top-jokes></app-top-jokes>
 <app-editjoke [jk]="selectedJoke"></app-editjoke>
 <ul>
     <li *ngFor = "let joke of jokes">
-        <div class="post">
+        <div id = "{{joke.id}}" class="post">
             <div class="post-header">
                 <a href="#" class="user">{{joke.author.username}}</a><span class="post-text">posted a joke at {{joke.timestamp}}</span>
-                <button (click)="onSelect(joke)">Edit joke</button>
+
+                <div class="dropdown">
+                    <button class="dropbtn">:</button>
+                    <div class="dropdown-content">
+                        <a (click)="onSelect(joke, content)">Edit joke</a>
+                        <a>Add to favorites</a>
+                        <a>Remove from favorites</a>
+                    </div>
+                </div>
             </div>
             <div class="post-joke">
                 <p>{{joke.joke}}<i class="fab fa-accusoft"></i></p>
             </div>
             <div class="post-footer">
-                <button class="reacion" id="like">
+                <button (click)="like(joke.id)" class="btn-light" id="like">
                     <span>Like: {{joke.likes}}</span>
                 </button>
-                <button class="reacion" id="dislike">
+                <button (click)="dislike(joke.id)" class="btn-light" id="dislike">
                     <span>Dislike: {{joke.dislikes}}</span>
                 </button>
             </div>
         </div>
     </li>
 </ul>
-<button (click)="toggleAddJoke()" class="new-joke">+</button>
+<button (click)="toggleAddJoke()" class="new-joke btn-darkgrey">+</button>
 <app-add-joke *ngIf="showAddJoke"></app-add-joke>
 
 <!--

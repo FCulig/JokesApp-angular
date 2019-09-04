@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { JokeComponent } from './joke/joke.component';
@@ -10,20 +12,24 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { EditjokeComponent } from './editjoke/editjoke.component';
 import { AddJokeComponent } from './add-joke/add-joke.component';
+import { TopJokesComponent } from './top-jokes/top-jokes.component';
 
-@NgModule({
+@NgModule({ 
   declarations: [
     AppComponent,
     JokeComponent,
     UserComponent,
     TopBarComponent,
     EditjokeComponent,
-    AddJokeComponent
+    AddJokeComponent,
+    TopJokesComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

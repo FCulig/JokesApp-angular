@@ -1,0 +1,11 @@
+<div class="scrolling-wrapper">
+    <h2>Top jokes:</h2>
+    <div *ngFor="let joke of topJokes" class="card">
+        <div class="joke">
+            <span>{{joke.joke}}</span>
+        </div>
+        <div class="credits">
+            <span>by {{joke.author.username}} at {{joke.timestamp}}</span>
+        </div>
+    </div>
+</div>

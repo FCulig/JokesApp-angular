@@ -7,4 +7,9 @@ export class Joke{
     dislikes: number;
     timestamp: string;
     author: User;
+
+    constructor(jokeText: string, auth: User){
+        this.joke=jokeText;
+        this.author=auth;
+    }
 }

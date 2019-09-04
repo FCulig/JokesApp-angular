@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Joke } from '../joke';
 import { JokeService } from '../joke.service';
 
@@ -35,6 +36,14 @@ export class JokeComponent implements OnInit {
     }else{
       this.showAddJoke = false;
     }
+  }
+
+  like(jokeId: number): void{
+    this.jokeService.likeJoke(jokeId).subscribe();
+  }
+
+  dislike(jokeId: number): void{
+    this.jokeService.dislikeJoke(jokeId).subscribe();
   }
 
 }

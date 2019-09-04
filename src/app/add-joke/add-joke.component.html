@@ -1,12 +1,11 @@
 <div class="add-joke">
-    <form method="POST" action="">
-        <label for="joke-input">Joke:</label>
-        <input name="joke" id="joke-input" type="text"><br>
-        <label for="author-selector">Select author:</label>
-        <select name="author">
-            <option value="{{user}}" *ngFor="let user of selectUserOptions">{{user.username}}</option>
-        </select>
+    <form [formGroup]="addJokeForm" (ngSubmit)="onSubmit()">
+        <label for="joke-input">Joke: </label>
+        <input formControlName="joke" name="joke" id="joke-input" type="comment"><br>
 
-        <input type="submit">
+        <label for="author-selector">Author id: </label>
+        <input type="number" formControlName="authorId" name="authorId" id="authorId-input">
+
+        <button [disabled]="!addJokeForm.valid" type="submit">Add</button>
     </form>
 </div>
