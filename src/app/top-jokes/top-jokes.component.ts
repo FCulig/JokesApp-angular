@@ -7,7 +7,7 @@ import { JokeService } from '../joke.service';
 @Component({
   selector: 'app-top-jokes',
   templateUrl: './top-jokes.component.html',
-  styleUrls: ['./top-jokes.component.css']
+  styleUrls: ['./top-jokes.component.scss']
 })
 export class TopJokesComponent implements OnInit {
 

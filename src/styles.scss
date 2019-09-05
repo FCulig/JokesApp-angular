@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+app-top-bar, .container{
+    font-family: Helvetica;
+}
+
+#logo-a {
+  font-family: stoner;
+  font-size: 25pt;
+}
+
+@font-face {
+  font-family: stoner;
+  src: url(assets/stoner.ttf) format("opentype");
+}

@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { EditjokeComponent } from './editjoke/editjoke.component';
 import { AddJokeComponent } from './add-joke/add-joke.component';
 import { TopJokesComponent } from './top-jokes/top-jokes.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({ 
   declarations: [
@@ -29,9 +30,10 @@ import { TopJokesComponent } from './top-jokes/top-jokes.component';
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    MDBBootstrapModule.forRoot()
   ],
-  providers: [],
+  providers: [TopBarComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

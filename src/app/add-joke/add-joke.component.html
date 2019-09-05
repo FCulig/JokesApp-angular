@@ -2,10 +2,6 @@
     <form [formGroup]="addJokeForm" (ngSubmit)="onSubmit()">
         <label for="joke-input">Joke: </label>
         <input formControlName="joke" name="joke" id="joke-input" type="comment"><br>
-
-        <label for="author-selector">Author id: </label>
-        <input type="number" formControlName="authorId" name="authorId" id="authorId-input">
-
         <button [disabled]="!addJokeForm.valid" type="submit">Add</button>
     </form>
 </div>

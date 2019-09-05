@@ -1,29 +1,56 @@
 <app-top-jokes></app-top-jokes>
 <app-editjoke [jk]="selectedJoke"></app-editjoke>
-<ul>
-    <li *ngFor = "let joke of jokes">
-        <div id = "{{joke.id}}" class="post">
-            <div class="post-header">
-                <a href="#" class="user">{{joke.author.username}}</a><span class="post-text">posted a joke at {{joke.timestamp}}</span>
 
-                <div class="dropdown">
-                    <button class="dropbtn">:</button>
+<div class="by-display" *ngIf="parameterDate">
+    <h2>Jokes from {{parameterDate}}</h2>
+</div>
+
+<div class="by-display" *ngIf="parameterUser">
+    <h2>Jokes by {{getUsername()}}</h2>
+</div>
+
+<!--
+    delete joke stavi za usera
+-->
+
+<ul>
+    <li *ngFor="let joke of jokes">
+        <div id="{{joke.id}}" class="post">
+            <div class="post-header">
+                <a [routerLink]="['/jokes/from',+joke.author.id]" class="user">{{joke.author.username}}</a>
+                <span class="post-text">posted a joke at
+                    <a [routerLink]="['/jokes/date',joke.timestamp]">{{joke.timestamp}}</a>
+                </span>
+
+                <div style="float:right;" class="dropdown">
+                    <button class="dropbtn">
+                        <mdb-icon fas icon="ellipsis-v"></mdb-icon>
+                    </button>
                     <div class="dropdown-content">
-                        <a (click)="onSelect(joke, content)">Edit joke</a>
-                        <a>Add to favorites</a>
-                        <a>Remove from favorites</a>
+                        <a (click)="onSelect(joke)">Edit joke</a>
+                        <a (click)="deleteJoke(joke)">Delete joke</a>
                     </div>
+                </div>
+                
+                <div class="favorite-container">
+                    <button class="favorite">
+                        <mdb-icon far icon="star"></mdb-icon>/<mdb-icon fas icon="star"></mdb-icon>
+                    </button>
                 </div>
             </div>
             <div class="post-joke">
-                <p>{{joke.joke}}<i class="fab fa-accusoft"></i></p>
+                <p>{{joke.joke}}</p>
             </div>
             <div class="post-footer">
-                <button (click)="like(joke.id)" class="btn-light" id="like">
-                    <span>Like: {{joke.likes}}</span>
+                <button (click)="like(joke.id)" class="reaction" id="like">
+                    <span>
+                        <mdb-icon far icon="thumbs-up"></mdb-icon>{{joke.likes}}
+                    </span>
                 </button>
-                <button (click)="dislike(joke.id)" class="btn-light" id="dislike">
-                    <span>Dislike: {{joke.dislikes}}</span>
+                <button (click)="dislike(joke.id)" class="reaction" id="dislike">
+                    <span>
+                        <mdb-icon far icon="thumbs-down"></mdb-icon>{{joke.dislikes}}
+                    </span>
                 </button>
             </div>
         </div>

@@ -8,9 +8,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
 
+  selectedUser: User;
+
   constructor(private http: HttpClient) { }
 
   getAllUsers(): Observable<any>{
     return this.http.get("//localhost:8080/users");
+  }
+
+  setSelectedUser(usr: User){
+    this.selectedUser = usr;
   }
 }

@@ -1,0 +1,41 @@
+$secondary-text-color: rgb(194, 194, 194);
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 20px;
+}
+
+.scrolling-wrapper h2{
+  margin-bottom:30px;
+}
+
+.card {
+  display: inline-block;
+  width: 400px;
+  margin-right: 25px;
+  margin-bottom: 5px;
+  padding-top: 15px;
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-bottom: 10px;
+}
+
+.joke {
+  font-size: 30pt;
+}
+
+.credits {
+  color: $secondary-text-color;
+}
+
+a {
+  color: $secondary-text-color;
+}
+
+#jump-link{
+  text-decoration: none;
+  color: black;
+}

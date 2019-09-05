@@ -10,7 +10,7 @@ import { JokeService } from '../joke.service';
 @Component({
   selector: 'app-editjoke',
   templateUrl: './editjoke.component.html',
-  styleUrls: ['./editjoke.component.css']
+  styleUrls: ['./editjoke.component.scss']
 })
 export class EditjokeComponent implements OnInit {
 
@@ -23,11 +23,13 @@ export class EditjokeComponent implements OnInit {
   constructor(private modalService: NgbModal, private jokeService:JokeService, private jokeComponenet: JokeComponent) { }
 
   ngOnInit() {
+    
   }
 
   onSubmit(id: number){
-    this.jokeService.editJoke(this.editJokeForm.value.joke, id).subscribe();
-    this.jokeComponenet.getJokes();
+    this.jokeService.editJoke(this.editJokeForm.value.joke, id).subscribe(joke => {this.jokeComponenet.getJokes()});
+    this.editJokeForm.reset();
+    this.modalService.dismissAll();
     this.jk = null;
   }
 
