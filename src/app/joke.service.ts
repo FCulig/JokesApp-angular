@@ -31,6 +31,9 @@ export class JokeService {
     });
   }
 
+  openEditJokeWindow() {
+  }
+
   editJoke(newJoke: string, jokeId: number): Observable<Joke> {
     return this.http.post<Joke>('//localhost:8080/jokes/' + jokeId, { "joke": newJoke });
   }
@@ -52,12 +55,28 @@ export class JokeService {
   }
 
   getJokesFromUser(userId: number): Observable<any> {
-    return this.http.get('//localhost:8080/users/' + userId +'/jokes');
+    return this.http.get('//localhost:8080/users/' + userId + '/jokes');
   }
 
   deleteJoke(jokeId: number): Observable<any> {
-    console.log('//localhost:8080/jokes/'+jokeId);
-    return this.http.delete('//localhost:8080/jokes/'+jokeId, this.httpOptions);
+    console.log('//localhost:8080/jokes/' + jokeId);
+    return this.http.delete('//localhost:8080/jokes/' + jokeId, this.httpOptions);
+  }
+
+  getUsersFavoriteJokes(userId: number): Observable<any> {
+    return this.http.get('//localhost:8080/users/' + userId + '/favorites');
+  }
+
+  checkIfJokeIsFavorite(userId: number, jokeId: number): Observable<any>{
+    return this.http.get('//localhost:8080/users/'+userId+'/isfavorite/'+jokeId);
+  }
+
+  favoriteJoke(userId: number, jokeId: number): Observable<any>{
+    return this.http.post('//localhost:8080/users/'+userId+'/favorite/'+jokeId, null);
+  }
+
+  unfavoriteJoke(userId: number, jokeId: number): Observable<any>{
+    return this.http.post('//localhost:8080/users/'+userId+'/unfavorite/'+jokeId, null);
   }
 
 }

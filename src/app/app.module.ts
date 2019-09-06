@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { JokeComponent } from './joke/joke.component';
@@ -14,6 +17,8 @@ import { EditjokeComponent } from './editjoke/editjoke.component';
 import { AddJokeComponent } from './add-joke/add-joke.component';
 import { TopJokesComponent } from './top-jokes/top-jokes.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { JokeItemComponent } from './joke-item/joke-item.component';
 
 @NgModule({ 
   declarations: [
@@ -23,7 +28,9 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     TopBarComponent,
     EditjokeComponent,
     AddJokeComponent,
-    TopJokesComponent
+    TopJokesComponent,
+    UserDetailsComponent,
+    JokeItemComponent
   ],
   imports: [
     BrowserModule,
@@ -31,9 +38,12 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     AppRoutingModule,
     ReactiveFormsModule,
     NgbModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule
   ],
-  providers: [TopBarComponent],
+  providers: [TopBarComponent, JokeComponent, JokeItemComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

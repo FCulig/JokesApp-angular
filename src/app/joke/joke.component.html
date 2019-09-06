@@ -1,63 +1,41 @@
 <app-top-jokes></app-top-jokes>
-<app-editjoke [jk]="selectedJoke"></app-editjoke>
+
+<!--<app-editjoke></app-editjoke>-->
 
 <div class="by-display" *ngIf="parameterDate">
     <h2>Jokes from {{parameterDate}}</h2>
-</div>
-
-<div class="by-display" *ngIf="parameterUser">
-    <h2>Jokes by {{getUsername()}}</h2>
 </div>
 
 <!--
     delete joke stavi za usera
 -->
 
-<ul>
-    <li *ngFor="let joke of jokes">
-        <div id="{{joke.id}}" class="post">
-            <div class="post-header">
-                <a [routerLink]="['/jokes/from',+joke.author.id]" class="user">{{joke.author.username}}</a>
-                <span class="post-text">posted a joke at
-                    <a [routerLink]="['/jokes/date',joke.timestamp]">{{joke.timestamp}}</a>
-                </span>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit joke</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="editJokeForm" (ngSubmit)="onSubmit()">
 
-                <div style="float:right;" class="dropdown">
-                    <button class="dropbtn">
-                        <mdb-icon fas icon="ellipsis-v"></mdb-icon>
-                    </button>
-                    <div class="dropdown-content">
-                        <a (click)="onSelect(joke)">Edit joke</a>
-                        <a (click)="deleteJoke(joke)">Delete joke</a>
-                    </div>
-                </div>
-                
-                <div class="favorite-container">
-                    <button class="favorite">
-                        <mdb-icon far icon="star"></mdb-icon>/<mdb-icon fas icon="star"></mdb-icon>
-                    </button>
-                </div>
-            </div>
-            <div class="post-joke">
-                <p>{{joke.joke}}</p>
-            </div>
-            <div class="post-footer">
-                <button (click)="like(joke.id)" class="reaction" id="like">
-                    <span>
-                        <mdb-icon far icon="thumbs-up"></mdb-icon>{{joke.likes}}
-                    </span>
-                </button>
-                <button (click)="dislike(joke.id)" class="reaction" id="dislike">
-                    <span>
-                        <mdb-icon far icon="thumbs-down"></mdb-icon>{{joke.dislikes}}
-                    </span>
-                </button>
-            </div>
-        </div>
-    </li>
-</ul>
-<button (click)="toggleAddJoke()" class="new-joke btn-darkgrey">+</button>
-<app-add-joke *ngIf="showAddJoke"></app-add-joke>
+            <input formControlName="joke" type="comment">
+
+            <button type="submit" [disabled]="!editJokeForm.valid" class="btn btn-outline-dark">Save</button>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template>
+
+<app-joke-item></app-joke-item>
+
+<app-add-joke></app-add-joke>
+
+<!--<button (click)="toggleAddJoke()" class="new-joke btn-darkgrey">+</button>
+<app-add-joke *ngIf="showAddJoke"></app-add-joke>-->
 
 <!--
     na hover vica prikazi ID

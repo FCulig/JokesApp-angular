@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { JokeComponent } from '../joke/joke.component';
 
+import { JokeComponent } from '../joke/joke.component';
 import { Joke } from '../joke';
 import { JokeService } from '../joke.service';
 
@@ -14,9 +14,7 @@ import { JokeService } from '../joke.service';
 })
 export class EditjokeComponent implements OnInit {
 
-  @Input() jk: Joke;
-
-  editJokeForm = new FormGroup({
+  /*editJokeForm = new FormGroup({
     joke: new FormControl('', Validators.required)
   })
 
@@ -35,6 +33,15 @@ export class EditjokeComponent implements OnInit {
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result;
+  }*/
+
+
+  constructor() {}
+
+  ngOnInit() {
+    
   }
+
+  
 
 }

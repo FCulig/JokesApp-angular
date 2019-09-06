@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
+$border-color: #edeeee;
+
 body {
   margin: 0;
   padding: 0;
@@ -8,6 +10,12 @@ body {
 
 app-top-bar, .container{
     font-family: Helvetica;
+}
+
+img.profile-picture {
+  width: 100%;
+  border-right: 1px solid $border-color;
+  padding: 40px 40px 40px 0;
 }
 
 #logo-a {

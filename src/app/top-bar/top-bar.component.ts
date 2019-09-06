@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { JokeComponent } from '../joke/joke.component';
 
 @Component({
   selector: 'app-top-bar',
@@ -14,7 +15,7 @@ export class TopBarComponent implements OnInit {
 
   selectedUser: User;
 
-  constructor(private userService: UserService) { }
+  constructor(private jokeComponent: JokeComponent, private userService: UserService) { }
 
   ngOnInit() {
     this.userService.getAllUsers().subscribe(users => this.userSelect = users);
@@ -23,5 +24,6 @@ export class TopBarComponent implements OnInit {
   onSelect(u: User){
     this.selectedUser = u;
     this.userService.setSelectedUser(u);
+    this.jokeComponent.ngOnInit();
   }
 }

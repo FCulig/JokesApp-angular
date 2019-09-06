@@ -1,6 +1,6 @@
 $border-color: #edeeee;
 $button-hover-color: #ddd;
-$button-color: #1f1f1f;
+$button-color: #3a3a3a;
 $button-background-color: #929292;
 
 h1 {
@@ -78,4 +78,5 @@ mdb-icon{
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
   background-color: #ddd;
+  color: $button-color;
 }

@@ -1,7 +1,20 @@
-<div class="add-joke">
-    <form [formGroup]="addJokeForm" (ngSubmit)="onSubmit()">
-        <label for="joke-input">Joke: </label>
-        <input formControlName="joke" name="joke" id="joke-input" type="comment"><br>
-        <button [disabled]="!addJokeForm.valid" type="submit">Add</button>
-    </form>
-</div>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">New joke</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="addJokeForm">
+            <div class="form-group green-border-focus">
+                <textarea formControlName="joke" placeholder="Write joke here..." class="form-control" rows="6"></textarea>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-dark" (click)="onSubmit()">Add</button>
+    </div>
+</ng-template>
+
+<button class="btn btn-lg btn-dark open-button" (click)="open(content)"><i class="fas fa-plus"></i></button>
