@@ -17,44 +17,15 @@ import { JokeItemComponent } from '../joke-item/joke-item.component';
 })
 export class JokeComponent implements OnInit {
 
-  editJokeForm = new FormGroup({
-    joke: new FormControl('', Validators.required)
-  });
-
-  selectedJoke: Joke;
   @Input() selectedUser: User;
 
-  showAddJoke = false;
+  constructor(private modalService: NgbModal, private jokeService: JokeService, 
+    private userService: UserService, private jokeItemList: JokeItemComponent) {
 
-
-  constructor(private modalService: NgbModal, private jokeService: JokeService, private userService: UserService,
-    private jokeItemList: JokeItemComponent) {
-    
   }
-
-  
 
   ngOnInit() {
-    
-  }
-  open(content, jk) {
-    this.selectedJoke = jk;
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result;
-  }
 
-  onSubmit() {
-    this.jokeService.editJoke(this.editJokeForm.value.joke, this.selectedJoke.id).subscribe(joke => { this.getJokes() });
-    this.editJokeForm.reset();
-    this.modalService.dismissAll();
-    this.selectedJoke = null;
-  }
-
-  toggleAddJoke(): void {
-    if (this.showAddJoke == false) {
-      this.showAddJoke = true;
-    } else {
-      this.showAddJoke = false;
-    }
   }
 
 }

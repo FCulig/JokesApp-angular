@@ -31,19 +31,16 @@ export class JokeService {
     });
   }
 
-  openEditJokeWindow() {
-  }
-
   editJoke(newJoke: string, jokeId: number): Observable<Joke> {
     return this.http.post<Joke>('//localhost:8080/jokes/' + jokeId, { "joke": newJoke });
   }
 
-  likeJoke(jokeId: number): Observable<Joke> {
-    return this.http.post<Joke>('//localhost:8080/jokes/' + jokeId + '/like', null);
+  likeJoke(jokeId: number, userId: number): Observable<Joke> {
+    return this.http.post<Joke>('//localhost:8080/users/' + userId + '/like/' + jokeId, null);
   }
 
-  dislikeJoke(jokeId: number): Observable<Joke> {
-    return this.http.post<Joke>('//localhost:8080/jokes/' + jokeId + '/dislike', null);
+  dislikeJoke(jokeId: number, userId: number): Observable<Joke> {
+    return this.http.post<Joke>('//localhost:8080/users/' + userId + '/dislike/' + jokeId, null);
   }
 
   topJokes(n: number): Observable<any> {
@@ -67,16 +64,20 @@ export class JokeService {
     return this.http.get('//localhost:8080/users/' + userId + '/favorites');
   }
 
-  checkIfJokeIsFavorite(userId: number, jokeId: number): Observable<any>{
-    return this.http.get('//localhost:8080/users/'+userId+'/isfavorite/'+jokeId);
+  checkIfJokeIsFavorite(userId: number, jokeId: number): Observable<any> {
+    return this.http.get('//localhost:8080/users/' + userId + '/isfavorite/' + jokeId);
   }
 
-  favoriteJoke(userId: number, jokeId: number): Observable<any>{
-    return this.http.post('//localhost:8080/users/'+userId+'/favorite/'+jokeId, null);
+  favoriteJoke(userId: number, jokeId: number): Observable<any> {
+    return this.http.post('//localhost:8080/users/' + userId + '/favorite/' + jokeId, null);
   }
 
-  unfavoriteJoke(userId: number, jokeId: number): Observable<any>{
-    return this.http.post('//localhost:8080/users/'+userId+'/unfavorite/'+jokeId, null);
+  unfavoriteJoke(userId: number, jokeId: number): Observable<any> {
+    return this.http.post('//localhost:8080/users/' + userId + '/unfavorite/' + jokeId, null);
+  }
+
+  getUsersWhoLikedJoke(jokeId: number): Observable<any>{
+    return this.http.get('//localhost:8080/jokes/' + jokeId + '/wholiked');
   }
 
 }

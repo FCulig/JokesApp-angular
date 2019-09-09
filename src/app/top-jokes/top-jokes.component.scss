@@ -8,8 +8,8 @@ $secondary-text-color: rgb(194, 194, 194);
   margin-top: 20px;
 }
 
-.scrolling-wrapper h2{
-  margin-bottom:30px;
+h2 {
+  margin: 30px 0;
 }
 
 .card {
@@ -35,7 +35,11 @@ a {
   color: $secondary-text-color;
 }
 
-#jump-link{
+#jump-link {
   text-decoration: none;
   color: black;
+}
+
+p{
+  word-break: break-all;
 }

@@ -1,3 +1,21 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit joke</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="editJokeForm" (ngSubmit)="onSubmit()">
+            <label>Edit joke:</label>
+            <input class="form-control" formControlName="joke" type="comment">
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">Save</button>
+    </div>
+</ng-template>
+
 <ul>
     <li *ngFor="let joke of jokes">
         <div id="{{joke.id}}" class="post">
@@ -35,7 +53,7 @@
             <div class="post-footer">
                 <button (click)="like(joke.id)" class="reaction" id="like">
                     <span>
-                        <mdb-icon far icon="thumbs-up"></mdb-icon>{{joke.likes}}
+                        <mdb-icon far icon="thumbs-up"></mdb-icon>{{getNumberOfLikes(joke.id)}}
                     </span>
                 </button>
                 <button (click)="dislike(joke.id)" class="reaction" id="dislike">

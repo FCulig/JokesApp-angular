@@ -10,25 +10,7 @@
     delete joke stavi za usera
 -->
 
-<ng-template #content let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Edit joke</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form [formGroup]="editJokeForm" (ngSubmit)="onSubmit()">
 
-            <input formControlName="joke" type="comment">
-
-            <button type="submit" [disabled]="!editJokeForm.valid" class="btn btn-outline-dark">Save</button>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-    </div>
-</ng-template>
 
 <app-joke-item></app-joke-item>
 

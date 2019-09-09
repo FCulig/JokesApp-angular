@@ -19,6 +19,7 @@ import { TopJokesComponent } from './top-jokes/top-jokes.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { JokeItemComponent } from './joke-item/joke-item.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 @NgModule({ 
   declarations: [
@@ -30,7 +31,8 @@ import { JokeItemComponent } from './joke-item/joke-item.component';
     AddJokeComponent,
     TopJokesComponent,
     UserDetailsComponent,
-    JokeItemComponent
+    JokeItemComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,7 @@ import { JokeItemComponent } from './joke-item/joke-item.component';
     MatInputModule,
     BrowserAnimationsModule
   ],
-  providers: [TopBarComponent, JokeComponent, JokeItemComponent],
+  providers: [TopBarComponent, JokeComponent, JokeItemComponent, TopJokesComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

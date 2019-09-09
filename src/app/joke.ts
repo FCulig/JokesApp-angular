@@ -1,4 +1,5 @@
 import { User } from './user';
+import { JokeService } from './joke.service';
  
 export class Joke{
     id: number;

@@ -4,6 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Joke } from '../joke';
 import { JokeService } from '../joke.service';
 import { UserService } from '../user.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { TopJokesComponent } from '../top-jokes/top-jokes.component';
 
 @Component({
   selector: 'app-joke-item',
@@ -15,15 +18,27 @@ export class JokeItemComponent implements OnInit {
   jokes: Joke[];
   favoritedJokes: Joke[];
 
+  selectedJoke: Joke;
+
+  editJokeForm = new FormGroup({
+    joke: new FormControl('', Validators.required)
+  });
 
   parameterDate = null;
   parameterUser = null;
 
   constructor(private jokeService: JokeService, private userService: UserService,
-    private activateRoute: ActivatedRoute) {
+    private activateRoute: ActivatedRoute, private modalService: NgbModal,
+    private topJokes: TopJokesComponent) {
     activateRoute.params.subscribe(params => {
       this.setupComponent(params['someParam']);
     })
+  }
+
+  getJokesWithParams() {
+    this.activateRoute.params.subscribe(params => {
+      this.setupComponent(params['someParam']);
+    });
   }
 
   setupComponent(param: string) {
@@ -55,7 +70,7 @@ export class JokeItemComponent implements OnInit {
     }
   }
 
-  addJoke(jk: Joke){
+  addJoke(jk: Joke) {
     this.getJokes();
     console.log(this.jokes);
     this.jokes.push(jk);
@@ -70,14 +85,20 @@ export class JokeItemComponent implements OnInit {
   }
 
   like(jokeId: number): void {
-    this.jokeService.likeJoke(jokeId).subscribe(val => {
-      this.getJokes();
+    this.jokeService.likeJoke(jokeId, this.userService.selectedUser.id).subscribe(val => {
+      //this.getJokes();
+      this.activateRoute.params.subscribe(params => {
+        this.setupComponent(params['someParam']);
+      })
     });
   }
 
   dislike(jokeId: number): void {
-    this.jokeService.dislikeJoke(jokeId).subscribe(val => {
-      this.getJokes();
+    this.jokeService.dislikeJoke(jokeId, this.userService.selectedUser.id).subscribe(val => {
+      //this.getJokes();
+      this.activateRoute.params.subscribe(params => {
+        this.setupComponent(params['someParam']);
+      })
     });
   }
 
@@ -113,6 +134,27 @@ export class JokeItemComponent implements OnInit {
       this.getFavoritedJokes();
       this.getJokes();
     });
+  }
+
+  open(content, jk) {
+    this.selectedJoke = jk;
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result;
+  }
+
+  onSubmit() {
+    this.jokeService.editJoke(this.editJokeForm.value.joke, this.selectedJoke.id).subscribe(joke => {
+      this.getJokes();
+      this.topJokes.getTopJokes();
+    });
+    this.editJokeForm.reset();
+    this.modalService.dismissAll();
+    this.selectedJoke = null;
+  }
+
+  getNumberOfLikes(jokeId: number){
+    this.jokeService.getUsersWhoLikedJoke(jokeId).subscribe(val=>{
+      return val.length;
+    })
   }
 
 }

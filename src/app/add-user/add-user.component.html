@@ -1,0 +1,21 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">New user</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="addUser">
+            <div class="form-group green-border-focus">
+                <label>Username:</label>
+                <input formControlName="username" type="text" class="form-control"/>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark" (click)="onSubmit()">Add</button>
+    </div>
+</ng-template>
+
+<button class="btn btn-lg btn-dark open-button" (click)="open(content)"><i class="fas fa-plus"></i></button>

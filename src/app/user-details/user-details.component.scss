@@ -1,7 +1,17 @@
 $border-color: #edeeee;
 
-h3{
-    font-size: 30pt;
+h3 {
+  font-size: 30pt;
+  display: inline-block;
+}
+
+a{
+  float: right;
+  margin-top: 10px;
+}
+
+i{
+  color: $border-color;
 }
 
 .profile-details {
@@ -11,12 +21,10 @@ h3{
   margin-top: 30px;
 }
 
-.profile-text{
-
+.profile-text {
 }
 
-.profile-text div{
-    font-size: 15pt;
-    margin-top: 15px
+.profile-text div {
+  font-size: 15pt;
+  margin-top: 15px;
 }
-

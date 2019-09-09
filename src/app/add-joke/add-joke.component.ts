@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { User } from '../user';
 import { UserService } from '../user.service';
@@ -24,28 +24,23 @@ export class AddJokeComponent implements OnInit {
     joke: new FormControl('', Validators.required)
   });
 
-  constructor(private tbComp: TopBarComponent,private jokeComp: JokeComponent,
-    private userService: UserService, private jokeService:JokeService, 
+  constructor(private tbComp: TopBarComponent, private jokeComp: JokeComponent,
+    private userService: UserService, private jokeService: JokeService,
     private jokeItemList: JokeItemComponent, private modalService: NgbModal) { }
 
   ngOnInit() {
   }
 
-  onSubmit(){
-    console.log(this.addJokeForm.value.joke);
-    this.jokeService.addJoke(this.addJokeForm.value.joke ,Number(this.userService.selectedUser.id)).subscribe(joke => {
-      /*this.jokeItemList.getJokes();
-      console.log(this.jokeItemList.jokes);
-      this.jokeItemList.addJoke(joke);*/
-      location.reload();
+  onSubmit() {
+    this.jokeService.addJoke(this.addJokeForm.value.joke, Number(this.userService.selectedUser.id)).subscribe(joke => {
+      this.jokeItemList.getJokesWithParams();
     });
-
-    this.jokeItemList.ngOnInit();
-    this.jokeComp.toggleAddJoke();
+    this.modalService.dismissAll();
+    this.addJokeForm.reset();
   }
 
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
   }
 
 
