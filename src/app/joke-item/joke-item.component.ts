@@ -17,6 +17,8 @@ export class JokeItemComponent implements OnInit {
 
   jokes: Joke[];
   favoritedJokes: Joke[];
+  likedJokes: Joke[];
+  dislikedJokes: Joke[];
 
   selectedJoke: Joke;
 
@@ -32,13 +34,15 @@ export class JokeItemComponent implements OnInit {
     private topJokes: TopJokesComponent) {
     activateRoute.params.subscribe(params => {
       this.setupComponent(params['someParam']);
-    })
+    });
   }
 
   getJokesWithParams() {
     this.activateRoute.params.subscribe(params => {
       this.setupComponent(params['someParam']);
     });
+
+
   }
 
   setupComponent(param: string) {
@@ -50,12 +54,14 @@ export class JokeItemComponent implements OnInit {
         this.jokeService.getFromDate(param).subscribe(jokes => {
           this.jokes = [];
           this.jokes = jokes;
+          this.updateReactions();
         });
       } else {
         this.parameterUser = converted;
         this.jokeService.getJokesFromUser(converted).subscribe(jokes => {
           this.jokes = [];
           this.jokes = jokes;
+          this.updateReactions();
         });
       }
     }
@@ -64,6 +70,8 @@ export class JokeItemComponent implements OnInit {
   ngOnInit() {
     if (this.userService.selectedUser != null) {
       this.getFavoritedJokes();
+      this.getLikedJokes();
+      this.getDislikedJokes();
     }
     if (this.parameterDate == null && this.parameterUser == null) {
       this.getJokes();
@@ -72,21 +80,47 @@ export class JokeItemComponent implements OnInit {
 
   addJoke(jk: Joke) {
     this.getJokes();
-    console.log(this.jokes);
     this.jokes.push(jk);
   }
 
   getJokes(): void {
-    this.jokeService.getJokes().subscribe(jokes => this.jokes = jokes);
+    this.jokeService.getJokes().subscribe(jokes => {
+      this.jokes = jokes;
+      this.updateReactions();
+    });
   }
 
   getFavoritedJokes() {
     this.jokeService.getUsersFavoriteJokes(this.userService.selectedUser.id).subscribe(val => this.favoritedJokes = val);
   }
 
+  getLikedJokes(){
+    this.userService.getLikedJokes(this.userService.selectedUser.id).subscribe(val=>{
+      this.likedJokes = val;
+    });
+  }
+
+  getDislikedJokes(){
+    this.userService.getDislikedJokes(this.userService.selectedUser.id).subscribe(val=>{
+      this.dislikedJokes = val;
+    });
+  }
+
+  updateReactions() {
+    this.jokes.forEach(val => {
+      this.jokeService.getUsersWhoLikedJoke(val.id).subscribe(v => {
+        val.likes = v.length;
+      });
+
+      this.jokeService.getUsersWhoDislikedJokes(val.id).subscribe(v => {
+        val.dislikes = v.length;
+      });
+    });
+  }
+
   like(jokeId: number): void {
     this.jokeService.likeJoke(jokeId, this.userService.selectedUser.id).subscribe(val => {
-      //this.getJokes();
+      this.getJokes();
       this.activateRoute.params.subscribe(params => {
         this.setupComponent(params['someParam']);
       })
@@ -95,7 +129,7 @@ export class JokeItemComponent implements OnInit {
 
   dislike(jokeId: number): void {
     this.jokeService.dislikeJoke(jokeId, this.userService.selectedUser.id).subscribe(val => {
-      //this.getJokes();
+      this.getJokes();
       this.activateRoute.params.subscribe(params => {
         this.setupComponent(params['someParam']);
       })
@@ -120,6 +154,34 @@ export class JokeItemComponent implements OnInit {
     }
 
     return isFav;
+  }
+
+  isJokeLiked(jokeId: number): boolean {
+    let isLiked = false;
+
+    if (this.likedJokes != null) {
+      this.likedJokes.forEach(function (value) {
+        if (value.id == jokeId) {
+          isLiked = true;
+        }
+      });
+    }
+
+    return isLiked;
+  }
+
+  isJokeDisliked(jokeId: number): boolean {
+    let isDisliked = false;
+
+    if (this.dislikedJokes != null) {
+      this.dislikedJokes.forEach(function (value) {
+        if (value.id == jokeId) {
+          isDisliked = true;
+        }
+      });
+    }
+
+    return isDisliked;
   }
 
   favorite(jokeId: number) {
@@ -151,10 +213,10 @@ export class JokeItemComponent implements OnInit {
     this.selectedJoke = null;
   }
 
-  getNumberOfLikes(jokeId: number){
-    this.jokeService.getUsersWhoLikedJoke(jokeId).subscribe(val=>{
+  getNumberOfLikes(jokeId: number) {
+    /*this.jokeService.getUsersWhoLikedJoke(jokeId).subscribe(val=>{
       return val.length;
-    })
+    })*/
   }
 
 }

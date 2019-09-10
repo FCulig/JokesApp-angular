@@ -20,6 +20,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { JokeItemComponent } from './joke-item/joke-item.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { JokePostComponent } from './joke-post/joke-post.component';
 
 @NgModule({ 
   declarations: [
@@ -32,7 +33,8 @@ import { AddUserComponent } from './add-user/add-user.component';
     TopJokesComponent,
     UserDetailsComponent,
     JokeItemComponent,
-    AddUserComponent
+    AddUserComponent,
+    JokePostComponent
   ],
   imports: [
     BrowserModule,

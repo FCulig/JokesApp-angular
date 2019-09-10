@@ -115,6 +115,22 @@ button#unfavorite{
   margin-right: -12px;
 }
 
+#like{
+  color: rgba(0, 0, 255, 0.329);
+}
+
+#like-active{
+  color: rgb(0, 0, 255);
+}
+
+#dislike{
+  color: rgba(255, 0, 0, 0.329);
+}
+
+#dislike-active{
+  color: rgb(255, 0, 0);
+}
+
 .post-footer mdb-icon {
   margin-right: 10px;
 }

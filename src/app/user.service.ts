@@ -48,4 +48,12 @@ export class UserService {
   getTotalFavoriteCount(userId: number): Observable<any> {
     return this.http.get("//localhost:8080/users/" + userId + "/favoritedjokecount");
   }
+
+  getLikedJokes(userId: number): Observable<any>{
+    return this.http.get("//localhost:8080/users/" + userId + "/liked");
+  }
+
+  getDislikedJokes(userId: number): Observable<any>{
+    return this.http.get("//localhost:8080/users/" + userId + "/disliked");
+  }
 }

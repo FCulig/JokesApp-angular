@@ -80,4 +80,8 @@ export class JokeService {
     return this.http.get('//localhost:8080/jokes/' + jokeId + '/wholiked');
   }
 
+  getUsersWhoDislikedJokes(jokeId: number): Observable<any>{
+    return this.http.get('//localhost:8080/jokes/' + jokeId + '/whodisliked');
+  }
+
 }
