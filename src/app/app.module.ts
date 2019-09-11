@@ -21,6 +21,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { JokeItemComponent } from './joke-item/joke-item.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { JokePostComponent } from './joke-post/joke-post.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
 
 @NgModule({ 
   declarations: [
@@ -34,7 +35,8 @@ import { JokePostComponent } from './joke-post/joke-post.component';
     UserDetailsComponent,
     JokeItemComponent,
     AddUserComponent,
-    JokePostComponent
+    JokePostComponent,
+    AuthenticationComponent
   ],
   imports: [
     BrowserModule,

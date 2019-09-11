@@ -1,0 +1,38 @@
+$border-color: #edeeee;
+$button-hover-color: #ddd;
+$button-color: #3a3a3a;
+$button-background-color: #929292;
+
+button{
+    background-color: $button-background-color;
+    color: white;
+}
+
+button:hover{
+    color: white;
+}
+
+input:focus{
+    border-bottom-color: $border-color !important;
+    box-shadow:  0 1px 0 0 $border-color !important;
+}
+
+label:active{
+    color: $button-color !important;
+}
+
+.form-container{
+    width: 50%;
+    margin: auto;
+}
+
+.logo-container{
+    margin: auto;
+    text-align: center;
+}
+
+#logo-a{
+    color: black;
+    font-size: 15vw;
+    font-weight: 500;
+}
