@@ -16,15 +16,21 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/users" href="#">Users<span class="sr-only">(current)</span></a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/logout" href="#">Logout</a>
+      </li>
     </ul>
 
-    <div class="dropdown">
+    <div ng-show="this.isAuth" class="dropdown">
       <button class="dropbtn">
-        <mdb-icon fas icon="user"></mdb-icon><span *ngIf="selectedUser">{{selectedUser.username}}</span>
+        <mdb-icon fas icon="user"></mdb-icon><span >{{loggedInUser}}asdsad</span>
       </button>
       <div class="dropdown-content">
-        <a *ngFor="let user of userSelect" (click)="onSelect(user)">{{user.username}}</a>
+        <a >{{user.username}}</a>
       </div>
     </div>
   </div>
 </nav>
+
+//https://stackoverflow.com/questions/35146280/how-to-update-ng-if-in-angular

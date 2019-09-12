@@ -9,6 +9,8 @@ import { User } from '../user';
 import { EditjokeComponent } from '../editjoke/editjoke.component';
 import { UserService } from '../user.service';
 import { JokeItemComponent } from '../joke-item/joke-item.component';
+import { AuthenticationService } from '../authentication.service';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-joke',
@@ -19,13 +21,13 @@ export class JokeComponent implements OnInit {
 
   @Input() selectedUser: User;
 
-  constructor(private modalService: NgbModal, private jokeService: JokeService, 
-    private userService: UserService, private jokeItemList: JokeItemComponent) {
-
+  constructor(private modalService: NgbModal, private jokeService: JokeService,
+    private userService: UserService, private jokeItemList: JokeItemComponent, 
+    private authenticationService: AuthenticationService, private httpClient:HttpClient) {
+    
   }
 
   ngOnInit() {
-
   }
 
 }

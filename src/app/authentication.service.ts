@@ -1,29 +1,52 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { environment } from 'src/environments/environment';
+import { User } from './user';
+import { UserService } from './user.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    constructor(private http: HttpClient) { }
 
-    login(username: string, password: string) {
-        return this.http.post<any>("/jokes", { username, password })
-            .pipe(map(user => {
-                // login successful if there's a user in the response
-                if (user) {
-                    // store user details and basic auth credentials in local storage 
-                    // to keep user logged in between page refreshes
-                    user.authdata = window.btoa(username + ':' + password);
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                }
+  constructor(
+    private httpClient: HttpClient,
+    private userService: UserService
+  ) { }
 
-                return user;
-            }));
-    }
+  loggedInUser: User;
 
-    //https://jasonwatmore.com/post/2018/09/07/angular-6-basic-http-authentication-tutorial-example
-    logout() {
-        // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
-    }
+  authenticate(username, password) {
+    console.log(username);
+    console.log(password);
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+    return this.httpClient.get<any>('http://localhost:8080/login', { headers }).pipe(
+      map(
+        userData => {
+          this.httpClient.get<any>('http://localhost:8080/users/search?username=' + username, { headers }).subscribe(val=>{
+            sessionStorage.setItem('id', val.id);
+          })
+          sessionStorage.setItem('username', username);
+          let authString = 'Basic ' + btoa(username + ':' + password);
+          sessionStorage.setItem('basicauth', authString);
+          return userData;
+        }
+      )
+
+    );
+  }
+
+  setLoggedIn(state: boolean) {
+    this.loggedIn = state;
+  }
+
+  isUserLoggedIn() {
+    let user = sessionStorage.getItem('username');
+    return !(user === null);
+  }
+
+  logOut() {
+    sessionStorage.removeItem('username');
+  }
 }

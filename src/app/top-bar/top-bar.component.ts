@@ -4,6 +4,8 @@ import { User } from '../user';
 import { UserService } from '../user.service';
 import { JokeComponent } from '../joke/joke.component';
 import { JokeItemComponent } from '../joke-item/joke-item.component';
+import { AuthenticationComponent } from '../authentication/authentication.component';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -12,20 +14,13 @@ import { JokeItemComponent } from '../joke-item/joke-item.component';
 })
 export class TopBarComponent implements OnInit {
 
-  userSelect: User[];
-
-  selectedUser: User;
+  isAuth = false;
 
   constructor(private jokeComponent: JokeComponent, private userService: UserService,
-    private jokeItemList: JokeItemComponent) { }
+    private jokeItemList: JokeItemComponent, private loginService: AuthenticationComponent,
+    private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    this.userService.getAllUsers().subscribe(users => this.userSelect = users);
-  }
-
-  onSelect(u: User){
-    this.selectedUser = u;
-    this.userService.setSelectedUser(u);
   }
   
 }

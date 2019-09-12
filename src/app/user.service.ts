@@ -8,14 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'my-auth-token'
-    })
-  };
+export class UserService {
 
   selectedUser: User;
 
@@ -27,6 +21,13 @@ export class UserService {
 
   getUserWithId(userId: number): Observable<any> {
     return this.http.get("//localhost:8080/users/" + userId);
+  }
+
+  getUserWithUsername(username: string){
+    /*var request = "//localhost:8080/users/search?username=" + username;
+    console.log(request);
+    return this.http.get(request);*/
+    
   }
 
   editUser(userId: number, newUsername: string): Observable<any> {

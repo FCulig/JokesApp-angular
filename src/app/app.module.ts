@@ -2,14 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { JokeComponent } from './joke/joke.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,8 +22,10 @@ import { JokeItemComponent } from './joke-item/joke-item.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { JokePostComponent } from './joke-post/joke-post.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { LogoutComponent } from './logout/logout.component';
+import { BasicAuthInterceptor } from './basic-auth-interceptor'
 
-@NgModule({ 
+@NgModule({
   declarations: [
     AppComponent,
     JokeComponent,
@@ -36,7 +38,8 @@ import { AuthenticationComponent } from './authentication/authentication.compone
     JokeItemComponent,
     AddUserComponent,
     JokePostComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,11 @@ import { AuthenticationComponent } from './authentication/authentication.compone
     MatInputModule,
     BrowserAnimationsModule
   ],
-  providers: [TopBarComponent, JokeComponent, JokeItemComponent, TopJokesComponent],
+  providers: [TopBarComponent, JokeComponent,
+    JokeItemComponent, TopJokesComponent, AuthenticationComponent,
+    {
+      provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
