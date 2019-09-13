@@ -1,16 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { User } from '../user';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { UserService } from '../user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { JokeItemComponent } from '../joke-item/joke-item.component';
 import { JokeService } from '../joke.service';
+import { TopBarComponent } from '../top-bar/top-bar.component';
 
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
   styleUrls: ['./user-details.component.scss']
+})
+@NgModule({
+  imports:[
+    TopBarComponent,
+    RouterModule
+  ]
 })
 export class UserDetailsComponent implements OnInit {
 
@@ -56,7 +63,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.editUser(this.activeUser.id, this.editUsernameForm.value.username).subscribe(user => {
+    this.userService.editUser(sessionStorage.getItem('id'), this.editUsernameForm.value.username).subscribe(user => {
       this.activeUser = user;
       this.jokeList.getJokes();
     });

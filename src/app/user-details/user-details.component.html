@@ -1,42 +1,46 @@
-<ng-template #content let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Edit profile</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form [formGroup]="editUsernameForm">
-            <div class="form-group green-border-focus">
-                <label>Username:</label>
-                <input formControlName="username" placeholder="New username" class="form-control"/>
+<app-top-bar></app-top-bar>
+
+<div class="container">
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Edit profile</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="editUsernameForm">
+                <div class="form-group green-border-focus">
+                    <label>Username:</label>
+                    <input formControlName="username" placeholder="New username" class="form-control"/>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-dark" (click)="onSubmit()">Save</button>
+        </div>
+    </ng-template>
+    
+    <div *ngIf="activeUser" class="row profile-details">
+        <div class="col-sm-5">
+            <img class="profile-picture" src="../../assets/img/blank-profile-picture.png">
+        </div>
+        <div class="col-sm-7 profile-text">
+            <div>
+                <h3>{{activeUser.username}}</h3>
+                <a (click)="open(content)"><i class="fas fa-edit"></i></a>
             </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button type="submit" class="btn btn-outline-dark" (click)="onSubmit()">Save</button>
-    </div>
-</ng-template>
-
-<div *ngIf="activeUser" class="row profile-details">
-    <div class="col-sm-5">
-        <img class="profile-picture" src="../../assets/img/blank-profile-picture.png">
-    </div>
-    <div class="col-sm-7 profile-text">
-        <div>
-            <h3>{{activeUser.username}}</h3>
-            <a (click)="open(content)"><i class="fas fa-edit"></i></a>
-        </div>
-        <div>
-            <span>Jokes wirtten: {{numberJokes}}</span>
-        </div>
-        <div>
-            <span>Total likes: </span>
-        </div>
-        <div>
-            <span>Total favorites: {{totalFavorites}}</span>
+            <div>
+                <span>Jokes wirtten: {{numberJokes}}</span>
+            </div>
+            <div>
+                <span>Total likes: </span>
+            </div>
+            <div>
+                <span>Total favorites: {{totalFavorites}}</span>
+            </div>
         </div>
     </div>
+    
+    <app-joke-item></app-joke-item>
 </div>
-
-<app-joke-item></app-joke-item>

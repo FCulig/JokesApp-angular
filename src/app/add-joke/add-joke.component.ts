@@ -1,15 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit, NgModule } from '@angular/core';
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+ 
 import { Validators } from '@angular/forms';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { User } from '../user';
-import { UserService } from '../user.service';
-import { Joke } from '../joke';
 import { JokeService } from '../joke.service';
-import { JokeComponent } from '../joke/joke.component';
-import { TopBarComponent } from '../top-bar/top-bar.component';
 import { JokeItemComponent } from '../joke-item/joke-item.component';
 
 
@@ -18,21 +13,29 @@ import { JokeItemComponent } from '../joke-item/joke-item.component';
   templateUrl: './add-joke.component.html',
   styleUrls: ['./add-joke.component.scss']
 })
+@NgModule({
+  imports: [
+      ReactiveFormsModule,
+      FormGroup
+  ],
+  declarations: [
+  ],
+  bootstrap: []
+})
 export class AddJokeComponent implements OnInit {
 
   addJokeForm = new FormGroup({
     joke: new FormControl('', Validators.required)
   });
 
-  constructor(private tbComp: TopBarComponent, private jokeComp: JokeComponent,
-    private userService: UserService, private jokeService: JokeService,
+  constructor(private jokeService: JokeService,
     private jokeItemList: JokeItemComponent, private modalService: NgbModal) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    this.jokeService.addJoke(this.addJokeForm.value.joke, Number(this.userService.selectedUser.id)).subscribe(joke => {
+    this.jokeService.addJoke(this.addJokeForm.value.joke, Number(sessionStorage.getItem('id'))).subscribe(joke => {
       this.jokeItemList.getJokesWithParams();
     });
     this.modalService.dismissAll();

@@ -8,6 +8,10 @@ button{
     color: white;
 }
 
+img{
+    width: 90%;
+}
+
 button:hover{
     color: white;
 }
@@ -21,9 +25,44 @@ label:active{
     color: $button-color !important;
 }
 
-.form-container{
+.auth-container{
     width: 50%;
+    border: 1px solid $border-color;
+    padding: 20px;
     margin: auto;
+    margin-top: 20px;
+    border-radius: 15px;
+}
+
+.header{
+    font-size: 30pt;
+}
+
+.header h2{
+    display: inline;
+}
+
+.header i{
+    float: right;
+    margin-top: 15px;
+}
+
+.forms{
+    margin: auto;
+    overflow: auto;
+}
+
+.login{
+    float: left;
+    padding: 30px;
+    width: 50%;
+}
+
+.register{
+    border-left: 1px solid $border-color;
+    float: left;
+    padding: 30px;
+    width: 50%;
 }
 
 .logo-container{

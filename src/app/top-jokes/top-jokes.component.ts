@@ -1,13 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 
 import { Joke } from '../joke';
 import { JokeService } from '../joke.service';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-top-jokes',
   templateUrl: './top-jokes.component.html',
   styleUrls: ['./top-jokes.component.scss']
+})
+@NgModule({
+  imports: [RouterModule],
+  exports: [],
+  declarations: [],
+  providers: [],
 })
 export class TopJokesComponent implements OnInit {
 

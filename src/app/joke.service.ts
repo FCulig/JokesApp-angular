@@ -35,11 +35,11 @@ export class JokeService {
     return this.http.post<Joke>('//localhost:8080/jokes/' + jokeId, { "joke": newJoke });
   }
 
-  likeJoke(jokeId: number, userId: number): Observable<Joke> {
+  likeJoke(jokeId: number, userId: string): Observable<Joke> {
     return this.http.post<Joke>('//localhost:8080/users/' + userId + '/like/' + jokeId, null);
   }
 
-  dislikeJoke(jokeId: number, userId: number): Observable<Joke> {
+  dislikeJoke(jokeId: number, userId: string): Observable<Joke> {
     return this.http.post<Joke>('//localhost:8080/users/' + userId + '/dislike/' + jokeId, null);
   }
 
@@ -60,19 +60,19 @@ export class JokeService {
     return this.http.delete('//localhost:8080/jokes/' + jokeId, this.httpOptions);
   }
 
-  getUsersFavoriteJokes(userId: number): Observable<any> {
+  getUsersFavoriteJokes(userId: string): Observable<any> {
     return this.http.get('//localhost:8080/users/' + userId + '/favorites');
   }
 
-  checkIfJokeIsFavorite(userId: number, jokeId: number): Observable<any> {
+  checkIfJokeIsFavorite(userId: string, jokeId: number): Observable<any> {
     return this.http.get('//localhost:8080/users/' + userId + '/isfavorite/' + jokeId);
   }
 
-  favoriteJoke(userId: number, jokeId: number): Observable<any> {
+  favoriteJoke(userId: string, jokeId: number): Observable<any> {
     return this.http.post('//localhost:8080/users/' + userId + '/favorite/' + jokeId, null);
   }
 
-  unfavoriteJoke(userId: number, jokeId: number): Observable<any> {
+  unfavoriteJoke(userId: string, jokeId: number): Observable<any> {
     return this.http.post('//localhost:8080/users/' + userId + '/unfavorite/' + jokeId, null);
   }
 

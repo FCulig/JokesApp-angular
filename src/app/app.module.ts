@@ -19,7 +19,6 @@ import { TopJokesComponent } from './top-jokes/top-jokes.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { JokeItemComponent } from './joke-item/joke-item.component';
-import { AddUserComponent } from './add-user/add-user.component';
 import { JokePostComponent } from './joke-post/joke-post.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -36,7 +35,6 @@ import { BasicAuthInterceptor } from './basic-auth-interceptor'
     TopJokesComponent,
     UserDetailsComponent,
     JokeItemComponent,
-    AddUserComponent,
     JokePostComponent,
     AuthenticationComponent,
     LogoutComponent

@@ -1,25 +1,29 @@
-<app-top-jokes></app-top-jokes>
+<app-top-bar></app-top-bar>
 
-<!--<app-editjoke></app-editjoke>-->
+<div class="container">
+    <app-top-jokes></app-top-jokes>
 
-<div class="by-display" *ngIf="parameterDate">
-    <h2>Jokes from {{parameterDate}}</h2>
-</div>
+    <!--<app-editjoke></app-editjoke>-->
 
-<!--
+    <div class="by-display" *ngIf="parameterDate">
+        <h2>Jokes from {{parameterDate}}</h2>
+    </div>
+
+    <!--
     delete joke stavi za usera
 -->
 
 
 
-<app-joke-item></app-joke-item>
+    <app-joke-item></app-joke-item>
 
-<app-add-joke></app-add-joke>
+    <app-add-joke></app-add-joke>
 
-<!--<button (click)="toggleAddJoke()" class="new-joke btn-darkgrey">+</button>
+    <!--<button (click)="toggleAddJoke()" class="new-joke btn-darkgrey">+</button>
 <app-add-joke *ngIf="showAddJoke"></app-add-joke>-->
 
-<!--
+    <!--
     na hover vica prikazi ID
     klik na datum prikaze sve viceve na taj datum, isto za usera
 -->
+</div>

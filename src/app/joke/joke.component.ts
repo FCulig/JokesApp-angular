@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Joke } from '../joke';
 import { JokeService } from '../joke.service';
@@ -11,7 +10,7 @@ import { UserService } from '../user.service';
 import { JokeItemComponent } from '../joke-item/joke-item.component';
 import { AuthenticationService } from '../authentication.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-joke',
   templateUrl: './joke.component.html',
@@ -21,9 +20,7 @@ export class JokeComponent implements OnInit {
 
   @Input() selectedUser: User;
 
-  constructor(private modalService: NgbModal, private jokeService: JokeService,
-    private userService: UserService, private jokeItemList: JokeItemComponent, 
-    private authenticationService: AuthenticationService, private httpClient:HttpClient) {
+  constructor() {
     
   }
 

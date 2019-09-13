@@ -1,19 +1,24 @@
-<ul>
-    <li *ngFor="let user of users">
-        <div id="user.id" [routerLink]="['/userdetails/',user.id]" class="row user-section">
-            <div class="col-2">
-                <img class="profile-picture" src="../../assets/img/blank-profile-picture.png">
-            </div>
-            <div class="col-10 user-details-container">
-                <div class="row">
-                    <span>ID: </span><a>{{user.id}}</a>
-                </div>
-                <div class="row">
-                    <span>Username: </span><a>{{user.username}}</a>
-                </div>
-            </div>
-        </div>
-    </li>
-</ul>
+<app-top-bar></app-top-bar>
 
-<app-add-user></app-add-user>
+<div class="container">
+    <ul>
+        <li *ngFor="let user of users">
+            <a [routerLink]="['/userdetails/',user.id]">
+                <div id="user.id" class="row user-section">
+                    <div class="col-2">
+                        <img class="profile-picture" src="../../assets/img/blank-profile-picture.png">
+                    </div>
+                    <div class="col-10 user-details-container">
+                        <div class="row">
+                            <span>ID: </span><a>{{user.id}}</a>
+                        </div>
+                        <div class="row">
+                            <span>Username: </span><a>{{user.username}}</a>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+
+</div>

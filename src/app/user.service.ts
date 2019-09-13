@@ -30,7 +30,7 @@ export class UserService {
     
   }
 
-  editUser(userId: number, newUsername: string): Observable<any> {
+  editUser(userId: string, newUsername: string): Observable<any> {
     return this.http.post<User>("//localhost:8080/users/" + userId, {
       "username": newUsername
     });
@@ -50,11 +50,11 @@ export class UserService {
     return this.http.get("//localhost:8080/users/" + userId + "/favoritedjokecount");
   }
 
-  getLikedJokes(userId: number): Observable<any>{
+  getLikedJokes(userId: string): Observable<any>{
     return this.http.get("//localhost:8080/users/" + userId + "/liked");
   }
 
-  getDislikedJokes(userId: number): Observable<any>{
+  getDislikedJokes(userId: string): Observable<any>{
     return this.http.get("//localhost:8080/users/" + userId + "/disliked");
   }
 }

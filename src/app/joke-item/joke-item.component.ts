@@ -1,17 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Joke } from '../joke';
 import { JokeService } from '../joke.service';
 import { UserService } from '../user.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { TopJokesComponent } from '../top-jokes/top-jokes.component';
 
 @Component({
   selector: 'app-joke-item',
   templateUrl: './joke-item.component.html',
   styleUrls: ['./joke-item.component.scss']
+})
+@NgModule({
+  imports: [
+    ReactiveFormsModule
+  ],
+  declarations: [
+  ],
+  bootstrap: []
 })
 export class JokeItemComponent implements OnInit {
 
@@ -41,8 +49,6 @@ export class JokeItemComponent implements OnInit {
     this.activateRoute.params.subscribe(params => {
       this.setupComponent(params['someParam']);
     });
-
-
   }
 
   setupComponent(param: string) {
@@ -55,6 +61,8 @@ export class JokeItemComponent implements OnInit {
           this.jokes = [];
           this.jokes = jokes;
           this.updateReactions();
+          this.getFavoritedJokes();
+          this.getJokes();
         });
       } else {
         this.parameterUser = converted;
@@ -62,17 +70,17 @@ export class JokeItemComponent implements OnInit {
           this.jokes = [];
           this.jokes = jokes;
           this.updateReactions();
+          this.getFavoritedJokes();
+          this.getJokes();
         });
       }
     }
   }
 
   ngOnInit() {
-    if (this.userService.selectedUser != null) {
-      this.getFavoritedJokes();
-      this.getLikedJokes();
-      this.getDislikedJokes();
-    }
+    this.getFavoritedJokes();
+    this.getLikedJokes();
+    this.getDislikedJokes();
     if (this.parameterDate == null && this.parameterUser == null) {
       this.getJokes();
     }
@@ -91,35 +99,47 @@ export class JokeItemComponent implements OnInit {
   }
 
   getFavoritedJokes() {
-    this.jokeService.getUsersFavoriteJokes(this.userService.selectedUser.id).subscribe(val => this.favoritedJokes = val);
+    this.jokeService.getUsersFavoriteJokes(sessionStorage.getItem('id')).subscribe(val => this.favoritedJokes = val);
   }
 
-  getLikedJokes(){
-    this.userService.getLikedJokes(this.userService.selectedUser.id).subscribe(val=>{
+  getLikedJokes() {
+    this.userService.getLikedJokes(sessionStorage.getItem('id')).subscribe(val => {
       this.likedJokes = val;
     });
   }
 
-  getDislikedJokes(){
-    this.userService.getDislikedJokes(this.userService.selectedUser.id).subscribe(val=>{
+  getDislikedJokes() {
+    this.userService.getDislikedJokes(sessionStorage.getItem('id')).subscribe(val => {
       this.dislikedJokes = val;
     });
   }
 
+  updateReaction(joke: Joke) {
+    this.jokes.forEach(val => {
+      if (joke === val) {
+        this.getLikesDislikesForJoke(val);
+      }
+    })
+  }
+
   updateReactions() {
     this.jokes.forEach(val => {
-      this.jokeService.getUsersWhoLikedJoke(val.id).subscribe(v => {
-        val.likes = v.length;
-      });
+      this.getLikesDislikesForJoke(val);
+    });
+  }
 
-      this.jokeService.getUsersWhoDislikedJokes(val.id).subscribe(v => {
-        val.dislikes = v.length;
-      });
+  getLikesDislikesForJoke(val: Joke) {
+    this.jokeService.getUsersWhoLikedJoke(val.id).subscribe(v => {
+      val.likes = v.length;
+    });
+
+    this.jokeService.getUsersWhoDislikedJokes(val.id).subscribe(v => {
+      val.dislikes = v.length;
     });
   }
 
   like(jokeId: number): void {
-    this.jokeService.likeJoke(jokeId, this.userService.selectedUser.id).subscribe(val => {
+    this.jokeService.likeJoke(jokeId, sessionStorage.getItem('id')).subscribe(val => {
       this.getJokes();
       this.activateRoute.params.subscribe(params => {
         this.setupComponent(params['someParam']);
@@ -128,7 +148,7 @@ export class JokeItemComponent implements OnInit {
   }
 
   dislike(jokeId: number): void {
-    this.jokeService.dislikeJoke(jokeId, this.userService.selectedUser.id).subscribe(val => {
+    this.jokeService.dislikeJoke(jokeId, sessionStorage.getItem('id')).subscribe(val => {
       this.getJokes();
       this.activateRoute.params.subscribe(params => {
         this.setupComponent(params['someParam']);
@@ -185,14 +205,14 @@ export class JokeItemComponent implements OnInit {
   }
 
   favorite(jokeId: number) {
-    this.jokeService.favoriteJoke(this.userService.selectedUser.id, jokeId).subscribe(val => {
+    this.jokeService.favoriteJoke(sessionStorage.getItem('id'), jokeId).subscribe(val => {
       this.getFavoritedJokes();
       this.getJokes();
     });
   }
 
   unfavorite(jokeId: number) {
-    this.jokeService.unfavoriteJoke(this.userService.selectedUser.id, jokeId).subscribe(val => {
+    this.jokeService.unfavoriteJoke(sessionStorage.getItem('id'), jokeId).subscribe(val => {
       this.getFavoritedJokes();
       this.getJokes();
     });

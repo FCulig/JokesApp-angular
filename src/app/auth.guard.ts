@@ -11,14 +11,11 @@ export class AuthGuard implements CanActivate {
     private authService: AuthenticationService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    console.log(this.authService.isUserLoggedIn());
     
     if (this.authService.isUserLoggedIn()) {
-      console.log("Guard redirect")
       return true;
     }
 
-    console.log("Guard ne redirect")
     this.router.navigate(['login']);
     return false;
 
