@@ -1,6 +1,6 @@
 $button-hover-color: #ddd;
 $button-color: #c4c3c3;
-$border-color: #edeeee; 
+$border-color: #edeeee;
 
 ul {
   list-style-type: none;
@@ -111,23 +111,23 @@ button.favorite {
   padding: 6px;
 }
 
-button#unfavorite{
+button#unfavorite {
   margin-right: -12px;
 }
 
-#like{
+#like {
   color: rgba(0, 0, 255, 0.329);
 }
 
-#like-active{
+#like-active {
   color: rgb(0, 0, 255);
 }
 
-#dislike{
+#dislike {
   color: rgba(255, 0, 0, 0.329);
 }
 
-#dislike-active{
+#dislike-active {
   color: rgb(255, 0, 0);
 }
 

@@ -22,7 +22,6 @@ export class JokeService {
   }
 
   addJoke(joke: string, id: number): Observable<Joke> {
-    //return this.http.post<Joke>('//localhost:8080/jokes', joke);
     return this.http.post<Joke>('//localhost:8080/jokes', {
       "author": {
         "id": id

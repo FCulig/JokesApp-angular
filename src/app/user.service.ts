@@ -36,16 +36,6 @@ export class UserService {
     });
   }
 
-  setSelectedUser(usr: User) {
-    this.selectedUser = usr;
-  }
-
-  addUser(username: string): Observable<any> {
-    return this.http.post<User>("//localhost:8080/users", {
-      "username": username
-    });
-  }
-
   getTotalFavoriteCount(userId: number): Observable<any> {
     return this.http.get("//localhost:8080/users/" + userId + "/favoritedjokecount");
   }

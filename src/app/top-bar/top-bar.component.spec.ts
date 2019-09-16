@@ -1,13 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TopBarComponent } from './top-bar.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { JokeComponent } from '../joke/joke.component';
 
 describe('TopBarComponent', () => {
-  /*let component: TopBarComponent;
+  let component: TopBarComponent;
   let fixture: ComponentFixture<TopBarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports:[
+        RouterTestingModule
+      ],
       declarations: [ TopBarComponent ]
     })
     .compileComponents();
@@ -21,5 +26,5 @@ describe('TopBarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });*/
+  });
 });

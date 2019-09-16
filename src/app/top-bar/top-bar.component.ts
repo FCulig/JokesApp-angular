@@ -20,9 +20,7 @@ export class TopBarComponent implements OnInit {
   username: string;
   userId: string;
 
-  constructor(private jokeComponent: JokeComponent, private userService: UserService,
-    private jokeItemList: JokeItemComponent, private loginService: AuthenticationComponent,
-    private authenticationService: AuthenticationService) { }
+  constructor() { }
 
   ngOnInit() {
     this.username = sessionStorage.getItem('username');

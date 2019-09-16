@@ -11,10 +11,11 @@ export class AuthenticationService {
 
   constructor(
     private httpClient: HttpClient,
-    private userService: UserService
   ) { }
 
   loggedInUser: User;
+  public tokenType = 'Basic ';
+  public tokenValue = '';
 
   authenticate(username, password) {
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
@@ -25,7 +26,9 @@ export class AuthenticationService {
             sessionStorage.setItem('id', val.id);
           })
           sessionStorage.setItem('username', username);
-          let authString = 'Basic ' + btoa(username + ':' + password);
+          this.tokenValue = btoa(username + ':' + password);
+          let authString = this.tokenType + this.tokenValue;
+
           sessionStorage.setItem('basicauth', authString);
           return userData;
         }

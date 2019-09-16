@@ -7,8 +7,4 @@ export class User{
     constructor(userId: number){
         this.id = userId;
     }
-
-    getUserId(){
-        return this.id;
-    }
 }
