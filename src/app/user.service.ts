@@ -23,11 +23,11 @@ export class UserService {
     return this.http.get("//localhost:8080/users/" + userId);
   }
 
-  getUserWithUsername(username: string){
+  getUserWithUsername(username: string) {
     /*var request = "//localhost:8080/users/search?username=" + username;
     console.log(request);
     return this.http.get(request);*/
-    
+
   }
 
   editUser(userId: string, newUsername: string): Observable<any> {
@@ -40,11 +40,23 @@ export class UserService {
     return this.http.get("//localhost:8080/users/" + userId + "/favoritedjokecount");
   }
 
-  getLikedJokes(userId: string): Observable<any>{
+  getLikedJokes(userId: string): Observable<any> {
     return this.http.get("//localhost:8080/users/" + userId + "/liked");
   }
 
-  getDislikedJokes(userId: string): Observable<any>{
+  getDislikedJokes(userId: string): Observable<any> {
     return this.http.get("//localhost:8080/users/" + userId + "/disliked");
+  }
+
+  isJokeLiked(userId: string, jokeId: number): Observable<any> {
+    return this.http.get("//localhost:8080/users/" + userId + "/isliked/" + jokeId);
+  }
+
+  isJokeDisliked(userId: string, jokeId: number): Observable<any> {
+    return this.http.get("//localhost:8080/users/" + userId + "/isdisliked/" + jokeId);
+  }
+
+  isJokeFavorited(userId: string, jokeId: number): Observable<any> {
+    return this.http.get("//localhost:8080/users/" + userId + "/isfavorite/" + jokeId);
   }
 }

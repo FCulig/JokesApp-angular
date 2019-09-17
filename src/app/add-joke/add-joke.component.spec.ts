@@ -10,18 +10,24 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TopJokesComponent } from '../top-jokes/top-jokes.component';
+import { By } from '@angular/platform-browser';
 
 describe('AddJokeComponent', () => {
   let component: AddJokeComponent;
   let fixture: ComponentFixture<AddJokeComponent>;
 
+  let openingButton;
+  let jokeTextArea;
+  let submitButton;
+  let closeButton;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule,
-        ReactiveFormsModule, 
+        ReactiveFormsModule,
         RouterTestingModule],
       declarations: [AddJokeComponent],
-      providers: [TopBarComponent, 
+      providers: [TopBarComponent,
         JokeComponent,
         TopJokesComponent,
         JokeItemComponent,
@@ -30,6 +36,14 @@ describe('AddJokeComponent', () => {
         }],
     })
       .compileComponents();
+
+    fixture = TestBed.createComponent(AddJokeComponent);
+    component = fixture.componentInstance;
+
+    openingButton = fixture.debugElement.query(By.css('#open-btn'));
+    submitButton = fixture.debugElement.query(By.css("#submit-btn"));
+    closeButton = fixture.debugElement.query(By.css("#close-btn"));
+    jokeTextArea = fixture.debugElement.query(By.css("textarea"));
   }));
 
   beforeEach(() => {

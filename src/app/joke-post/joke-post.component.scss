@@ -2,6 +2,11 @@ $button-hover-color: #ddd;
 $button-color: #c4c3c3;
 $border-color: #edeeee; 
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 .post {
   border: 1px solid $border-color;
   border-radius: 5px;

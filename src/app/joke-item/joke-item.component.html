@@ -18,58 +18,6 @@
 
 <ul>
     <li *ngFor="let joke of jokes">
-        <div id="{{joke.id}}" class="post">
-            <div class="post-header">
-                <a [routerLink]="['/userdetails/',+joke.author.id]" class="user">{{joke.author.username}}</a>
-                <span class="post-text">posted a joke at
-                    <a [routerLink]="['/jokes/date',joke.timestamp]">{{joke.timestamp}}</a>
-                </span>
-
-                <div style="float:right;" class="dropdown">
-                    <button class="dropbtn">
-                        <i class="fas fa-ellipsis-v"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a (click)="open(content, joke)">Edit joke</a>
-                        <a (click)="deleteJoke(joke)">Delete joke</a>
-                    </div>
-                </div>
-
-                <div class="favorite-container">
-                    <button (click)="favorite(joke.id)" class="favorite" id="favorite">
-                        <i *ngIf="!isJokeFavorite(joke.id)" class="far fa-star"></i>
-                    </button>
-                    <button *ngIf="isJokeFavorite(joke.id)" class="favorite" (click)="unfavorite(joke.id)"
-                        id="unfavorite">
-                        <i class="fas fa-star"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="post-joke">
-                <p>{{joke.joke}}</p>
-            </div>
-            <div class="post-footer">
-                <button *ngIf="isJokeLiked(joke.id)==true" (click)="like(joke.id)" class="reaction" id="like-active">
-                    <span>
-                        <i class="far fa-thumbs-up"></i>{{joke.likes}}
-                    </span>
-                </button>
-                <button *ngIf="isJokeLiked(joke.id)==false" (click)="like(joke.id)" class="reaction" id="like">
-                    <span>
-                        <i class="far fa-thumbs-up"></i>{{joke.likes}}
-                    </span>
-                </button>
-                <button *ngIf="isJokeDisliked(joke.id)" (click)="dislike(joke.id)" class="reaction" id="dislike-active">
-                    <span>
-                        <i class="far fa-thumbs-down"></i>{{joke.dislikes}}
-                    </span>
-                </button>
-                <button *ngIf="!isJokeDisliked(joke.id)" (click)="dislike(joke.id)" class="reaction" id="dislike">
-                    <span>
-                        <i class="far fa-thumbs-down"></i>{{joke.dislikes}}
-                    </span>
-                </button>
-            </div>
-        </div>
+        <app-joke-post [joke]="joke"></app-joke-post>
     </li>
 </ul>

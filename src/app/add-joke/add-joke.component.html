@@ -1,7 +1,7 @@
 <ng-template #content let-modal>
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">New joke</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <button type="button" id="close-btn" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -13,8 +13,8 @@
         </form>
     </div>
     <div class="modal-footer">
-            <button type="submit" class="btn btn-outline-dark" (click)="onSubmit()">Add</button>
+            <button type="submit" id="submit-btn" class="btn btn-outline-dark" [disabled]="!addJokeForm.valid" (click)="onSubmit()">Add</button>
     </div>
 </ng-template>
 
-<button class="btn btn-lg btn-dark open-button" (click)="open(content)"><i class="fas fa-plus"></i></button>
+<button id="open-btn" class="btn btn-lg btn-dark open-button" (click)="open(content)"><i class="fas fa-plus"></i></button>

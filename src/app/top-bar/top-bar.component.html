@@ -8,7 +8,6 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 
-      <!--Dodaj active klasu kad je aktivna stranica, zelena crta ispod?-->
       <li class="nav-item">
         <a class="nav-link" routerLink="/jokes">Jokes<span class="sr-only">(current)</span></a>
       </li>
@@ -20,7 +19,7 @@
 
     <div class="dropdown">
       <button class="dropbtn">
-        <i class="fas fa-user"></i><span>{{username}}</span>
+        <i class="fas fa-user"></i><span> {{username}}</span>
       </button>
       <div class="dropdown-content">
         <a routerLink="/userdetails/{{userId}}">My profile</a>

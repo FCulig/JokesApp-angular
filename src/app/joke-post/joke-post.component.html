@@ -16,11 +16,10 @@
         </div>
 
         <div class="favorite-container">
-            <button (click)="favorite(joke.id)" class="favorite" id="favorite">
-                <i *ngIf="!joke.isFavorite" class="far fa-star"></i>
+            <button *ngIf="!isFavorite" (click)="favorite()" class="favorite" id="favorite">
+                <i class="far fa-star"></i>
             </button>
-            <button *ngIf="joke.isFavorite" class="favorite" (click)="unfavorite(joke.id)"
-                id="unfavorite">
+            <button *ngIf="isFavorite" class="favorite" (click)="unfavorite()" id="unfavorite">
                 <i class="fas fa-star"></i>
             </button>
         </div>
@@ -29,22 +28,22 @@
         <p>{{joke.joke}}</p>
     </div>
     <div class="post-footer">
-        <button *ngIf="joke.isLiked==true" (click)="like(joke.id)" class="reaction" id="like-active">
+        <button *ngIf="isLiked" (click)="like()" class="reaction" id="like-active">
             <span>
                 <i class="far fa-thumbs-up"></i>{{joke.likes}}
             </span>
         </button>
-        <button *ngIf="joke.isLiked==false" (click)="like(joke.id)" class="reaction" id="like">
+        <button *ngIf="!isLiked" (click)="like()" class="reaction" id="like">
             <span>
                 <i class="far fa-thumbs-up"></i>{{joke.likes}}
             </span>
         </button>
-        <button *ngIf="joke.isDisliked" (click)="dislike(joke.id)" class="reaction" id="dislike-active">
+        <button *ngIf="isDisliked" (click)="dislike()" class="reaction" id="dislike-active">
             <span>
                 <i class="far fa-thumbs-down"></i>{{joke.dislikes}}
             </span>
         </button>
-        <button *ngIf="!joke.isDisliked" (click)="dislike(joke.id)" class="reaction" id="dislike">
+        <button *ngIf="!isDisliked" (click)="dislike()" class="reaction" id="dislike">
             <span>
                 <i class="far fa-thumbs-down"></i>{{joke.dislikes}}
             </span>

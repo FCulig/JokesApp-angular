@@ -11,7 +11,7 @@ import { AuthenticationService } from '../authentication.service';
 })
 @NgModule({
   imports: [
-      ReactiveFormsModule
+    ReactiveFormsModule
   ],
   declarations: [
   ],
@@ -34,7 +34,7 @@ export class AuthenticationComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     private authenticationService: AuthenticationService
-    ) { }
+  ) { }
 
   ngOnInit() {
   }
@@ -51,14 +51,13 @@ export class AuthenticationComponent implements OnInit {
     );
   }
 
-  onRegister(){
+  onRegister() {
     console.log()
-    if(this.registerForm.value.passwordReg == this.registerForm.value.repeatedPasswordReg){
-      this.authenticationService.register(this.registerForm.value.usernameReg, this.registerForm.value.passwordReg).subscribe(val=>{
-
+    if (this.registerForm.value.passwordReg == this.registerForm.value.repeatedPasswordReg) {
+      this.authenticationService.register(this.registerForm.value.usernameReg, this.registerForm.value.passwordReg).subscribe(val => {
       });
       alert("Registration successful");
-    }else{
+    } else {
       alert("Passwords don't match");
     }
   }

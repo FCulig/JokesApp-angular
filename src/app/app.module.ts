@@ -13,7 +13,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { AppRoutingModule } from './app-routing.module';
-import { EditjokeComponent } from './editjoke/editjoke.component';
 import { AddJokeComponent } from './add-joke/add-joke.component';
 import { TopJokesComponent } from './top-jokes/top-jokes.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -30,7 +29,6 @@ import { BasicAuthInterceptor } from './basic-auth-interceptor'
     JokeComponent,
     UserComponent,
     TopBarComponent,
-    EditjokeComponent,
     AddJokeComponent,
     TopJokesComponent,
     UserDetailsComponent,
